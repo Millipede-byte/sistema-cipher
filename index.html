@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>СИСТЕМА CIFER</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="header-row">
+
+        <div class="logo-container">
+            <div id="cifer-logo">СИСТЕМА CIFER</div>
+            <div class="scan-line"></div>
+        </div>
+
+        <div id="system-status">
+            <span id="status-indicator">●</span>
+            <span id="status-text">System Online</span>
+            <span id="status-dots">...</span>
+        </div>
+
+    </div>
+
+    <!-- ADMIN / USER STATUS -->
+    <button id="access-status" onclick="openAdminLogin()">
+        STATUS: USER
+    </button>
+
+    <div id="theme-controls">
+        <label for="theme-select">THEME</label>
+        <select id="theme-select" onchange="changeTheme(this.value)">
+            <option value="green">SYSTEM GREEN</option>
+            <option value="amber">TERMINAL AMBER</option>
+            <option value="blue">CYBER BLUE</option>
+            <option value="crimson">CRIMSON</option>
+            <option value="mono">MONOCHROME</option>
+        </select>
+    </div>
+
+    <textarea id="input" placeholder="Enter message..."></textarea>
+
+    <div class="buttons">
+        <button onclick="encryptMessage()">ENCRYPT</button>
+        <button onclick="decryptMessage()">DECRYPT</button>
+        <button onclick="copyResult()">COPY</button>
+        <button onclick="clearAll()">CLEAR</button>
+    </div>
+
+    <!-- PHASE 4: PROCESSING ANIMATION -->
+    <div id="processing-container">
+        <div id="processing-label">PROCESSING</div>
+        <div id="processing-bar">
+            <div id="processing-indicator"></div>
+        </div>
+    </div>
+
+    <textarea id="output" readonly></textarea>
+
+    <!-- PHASE 6: COMBINED DIAGNOSTICS -->
+    <div id="diagnostics-panel">
+
+        <div id="diagnostics-title">
+            СИСТЕМА CIFER // DIAGNOSTICS
+        </div>
+
+        <details open>
+            <summary>CIPHER</summary>
+
+            <div class="diagnostic-grid">
+
+                <div>OPERATION</div>
+                <div id="intel-operation">—</div>
+
+                <div>WORDS</div>
+                <div id="intel-words">—</div>
+
+                <div>LETTERS</div>
+                <div id="intel-letters">—</div>
+
+                <div>INPUT CHARACTERS</div>
+                <div id="intel-input-chars">—</div>
+
+                <div>OUTPUT CHARACTERS</div>
+                <div id="intel-output-chars">—</div>
+
+                <div>SHIFT</div>
+                <div id="intel-shift">########</div>
+
+                <div>DIRECTION</div>
+                <div id="intel-direction">#</div>
+
+                <div>COMPUTE TIME</div>
+                <div id="intel-time">—</div>
+
+                <div>STATUS</div>
+                <div id="intel-status">READY</div>
+
+            </div>
+        </details>
+
+        <div id="pattern-analysis">
+            <div class="analysis-heading">REPEATED TOKENS</div>
+            <div id="intel-repeated-tokens">—</div>
+
+            <div class="analysis-heading">MOST COMMON</div>
+            <div id="intel-common-characters">—</div>
+
+            <div class="analysis-heading">VALIDATION</div>
+            <div id="intel-validation">—</div>
+        </div>
+
+        <details open>
+            <summary>SYSTEM</summary>
+
+            <div class="diagnostic-grid">
+
+                <div>PLATFORM</div>
+                <div id="sys-platform">—</div>
+
+                <div>BROWSER</div>
+                <div id="sys-browser">—</div>
+
+                <div>SCREEN</div>
+                <div id="sys-screen">—</div>
+
+                <div>LANGUAGE</div>
+                <div id="sys-language">—</div>
+
+                <div>TIMEZONE</div>
+                <div id="sys-timezone">—</div>
+
+                <div>JAVASCRIPT</div>
+                <div id="sys-javascript">ENABLED</div>
+
+                <div>LOCAL STORAGE</div>
+                <div id="sys-storage">—</div>
+
+                <div>ONLINE</div>
+                <div id="sys-online">—</div>
+
+            </div>
+        </details>
+
+    </div>
+
+    <div id="diagnostics"></div>
+
+    <div id="timer">Ready.</div>
+
+    <script src="cipher.js"></script>
+
+    <!-- ACTIVITY LOG -->
+    <button id="activity-log-button" onclick="toggleActivityLog()">
+        ACTIVITY LOG
+    </button>
+
+    <div id="activity-log-panel">
+
+        <div id="activity-log-header">
+            <span>СИСТЕМА CIFER // ACTIVITY LOG</span>
+
+            <button onclick="toggleActivityLog()">
+                ✕
+            </button>
+        </div>
+
+        <div id="activity-log-content">
+            No activity recorded.
+        </div>
+
+        <button id="clear-log-button" onclick="clearActivityLog()">
+            CLEAR LOG
+        </button>
+
+    </div>
+
+    <!-- ADMIN LOGIN -->
+    <div id="admin-modal" class="modal-hidden">
+
+        <div id="admin-box">
+
+            <div id="admin-title">
+                СИСТЕМА CIFER // ADMIN ACCESS
+            </div>
+
+            <div id="admin-prompt">
+                ENTER ADMIN PASSWORD
+            </div>
+
+            <input
+                id="admin-password"
+                type="password"
+                autocomplete="off"
+                placeholder="Password..."
+                onkeydown="handleAdminKey(event)"
+            >
+
+            <div id="admin-error"></div>
+
+            <div class="admin-buttons">
+                <button onclick="authenticateAdmin()">
+                    AUTHENTICATE
+                </button>
+
+                <button onclick="closeAdminLogin()">
+                    CANCEL
+                </button>
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+</html>
